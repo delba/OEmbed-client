@@ -10,14 +10,52 @@ import Foundation
 
 class Item {
     let title: String
+    let authorName: String
+    let authorURL: String
+    let description: String
+    let duration: Int
+    let height: Int
+    let HTML: String
+    let isPlus: String
+    let providerName: String
+    let providerURL: String
+    let thumbnailURL: String
+    let thumbnailWidth: Int
+    let thumbnailHeight: Int
+    let type: String
+    let URI: String
+    let version: String
+    let videoID: Int
+    let width: Int
     
     class func all() -> [Item] {
+        let path = NSBundle.mainBundle().pathForResource("item", ofType: "json")!
+        let data = NSData(contentsOfFile: path)!
+        let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as [String: AnyObject]
+        
         return (1...10).map { (i: Int) -> Item in
-            return Item(title: "Item \(i)")
+            return Item(data: json)
         }
     }
     
-    init(title: String) {
-        self.title = title
+    init(data: [String: AnyObject]) {
+        title = data["title"] as String
+        authorName = data["author_name"] as String
+        authorURL = data["author_url"] as String
+        description = data["description"] as String
+        duration = data["duration"] as Int
+        HTML = data["html"] as String
+        height = data["height"] as Int
+        width = data["width"] as Int
+        thumbnailURL = data["thumbnail_url"] as String
+        thumbnailWidth = data["thumbnail_width"] as Int
+        thumbnailHeight = data["thumbnail_height"] as Int
+        isPlus = data["is_plus"] as String
+        providerName = data["provider_name"] as String
+        providerURL = data["provider_url"] as String
+        type = data["type"] as String
+        URI = data["uri"] as String
+        version = data["version"] as String
+        videoID = data["video_id"] as Int
     }
 }
