@@ -27,6 +27,8 @@ class ItemsViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Items"
+        
         collectionView!.backgroundColor = UIColor.whiteColor()
 
         collectionView!.registerClass(ItemCell.self, forCellWithReuseIdentifier: reuseIdentifier)
