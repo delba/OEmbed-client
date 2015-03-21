@@ -15,19 +15,19 @@ class Item {
     let authorURL: String
     let description: String
     let duration: Int
-    let height: Int
+    let height: CGFloat
+    let width: CGFloat
     let HTML: String
     let isPlus: String
     let providerName: String
     let providerURL: String
     let thumbnailURL: String
-    let thumbnailWidth: Int
-    let thumbnailHeight: Int
+    let thumbnailWidth: CGFloat
+    let thumbnailHeight: CGFloat
     let type: String
     let URI: String
     let version: String
     let videoID: Int
-    let width: Int
     
     class func all() -> [Item] {
         let path = NSBundle.mainBundle().pathForResource("item", ofType: "json")!
@@ -46,11 +46,11 @@ class Item {
         description = data["description"] as String
         duration = data["duration"] as Int
         HTML = data["html"] as String
-        height = data["height"] as Int
-        width = data["width"] as Int
+        height = data["height"] as CGFloat
+        width = data["width"] as CGFloat
         thumbnailURL = data["thumbnail_url"] as String
-        thumbnailWidth = data["thumbnail_width"] as Int
-        thumbnailHeight = data["thumbnail_height"] as Int
+        thumbnailWidth = data["thumbnail_width"] as CGFloat
+        thumbnailHeight = data["thumbnail_height"] as CGFloat
         isPlus = data["is_plus"] as String
         providerName = data["provider_name"] as String
         providerURL = data["provider_url"] as String

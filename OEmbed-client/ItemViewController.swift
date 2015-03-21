@@ -61,7 +61,7 @@ class ItemViewController: UIViewController {
             "title": itemTitle
         ]
         
-        view.addConstraint(NSLayoutConstraint(item: content, attribute: .Height, relatedBy: .Equal, toItem: content, attribute: .Width, multiplier: 2 / 3, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: content, attribute: .Height, relatedBy: .Equal, toItem: content, attribute: .Width, multiplier: item.thumbnailHeight / item.thumbnailWidth, constant: 0))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[content]|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[title]|", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[content]-[title]", options: nil, metrics: nil, views: views))
