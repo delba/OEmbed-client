@@ -57,8 +57,10 @@ class ItemsViewController: UICollectionViewController {
     // MARK: - UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let item = items[indexPath.item]
-        println(item.title)
+        let itemVC = ItemViewController()
+        itemVC.item = items[indexPath.item]
+        
+        navigationController?.pushViewController(itemVC, animated: true)
     }
     
 }
