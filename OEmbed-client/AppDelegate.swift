@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var navigationController: UINavigationController = {
         let navigationController = UINavigationController(rootViewController: ItemsViewController())
+        navigationController.navigationBar.tintColor = UIColor.blackColor()
         return navigationController
     }()
 
