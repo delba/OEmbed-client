@@ -20,6 +20,14 @@ class ItemCell: UICollectionViewCell {
     
     // MARK: - Subviews
     
+    lazy var thumbnail: UIImageView = {
+        let imageView = UIImageView()
+        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.contentMode = .ScaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
     lazy var title: UILabel = {
         let label = UILabel()
         label.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -34,7 +42,8 @@ class ItemCell: UICollectionViewCell {
         
         backgroundColor = UIColor.blackColor()
         
-        addSubview(title)
+        addSubview(thumbnail)
+        thumbnail.addSubview(title)
         
         updateConstraintsIfNeeded()
     }
@@ -49,16 +58,21 @@ class ItemCell: UICollectionViewCell {
         super.updateConstraints()
         
         let views = [
+            "thumbnail": thumbnail,
             "title": title
         ]
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[title]", options: nil, metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[title]-|", options: nil, metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[thumbnail]|", options: nil, metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[thumbnail]|", options: nil, metrics: nil, views: views))
+        
+        thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[title]", options: nil, metrics: nil, views: views))
+        thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[title]-|", options: nil, metrics: nil, views: views))
     }
     
     // MARK: - Render
     
     func render() {
+        thumbnail.image = item.thumbnail()
         title.text = item.title
     }
 }

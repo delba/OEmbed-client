@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Item {
     let title: String
@@ -58,4 +59,11 @@ class Item {
         version = data["version"] as String
         videoID = data["video_id"] as Int
     }
+    
+    func thumbnail() -> UIImage {
+        let URL = NSURL(string: thumbnailURL)!
+        let data = NSData(contentsOfURL: URL)!
+        return UIImage(data: data)!
+    }
+    
 }
