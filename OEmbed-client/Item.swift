@@ -11,6 +11,12 @@ import Foundation
 class Item {
     let title: String
     
+    class func all() -> [Item] {
+        return (1...10).map { (i: Int) -> Item in
+            return Item(title: "Item \(i)")
+        }
+    }
+    
     init(title: String) {
         self.title = title
     }

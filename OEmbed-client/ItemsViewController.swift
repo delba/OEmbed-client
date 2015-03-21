@@ -14,9 +14,7 @@ class ItemsViewController: UICollectionViewController {
     
     // MARK: - Data
     
-    let items: [Item] = (1...10).map { (i: Int) -> Item in
-        return Item(title: "Item \(i)")
-    }
+    let items = Item.all()
     
     // MARK: - Initialization
     
