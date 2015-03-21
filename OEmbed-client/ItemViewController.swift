@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit
 
 class ItemViewController: UIViewController {
     
@@ -20,11 +21,11 @@ class ItemViewController: UIViewController {
     
     // MARK: - Subviews
     
-    lazy var content: UIView = {
-        let view = UIView()
-        view.setTranslatesAutoresizingMaskIntoConstraints(false)
-        view.backgroundColor = UIColor.blackColor()
-        return view
+    lazy var content: WKWebView = {
+        let webView = WKWebView()
+        webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        webView.scrollView.scrollEnabled = false
+        return webView
     }()
     
     lazy var itemTitle: UILabel = {
@@ -70,6 +71,7 @@ class ItemViewController: UIViewController {
     
     func render() {
         itemTitle.text = item.title
+        content.loadHTMLString(item.HTML, baseURL: nil)
     }
 
 }
