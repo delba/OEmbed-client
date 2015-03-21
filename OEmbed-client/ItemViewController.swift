@@ -24,6 +24,8 @@ class ItemViewController: UIViewController {
     lazy var content: WKWebView = {
         let webView = WKWebView()
         webView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        webView.opaque = false
+        webView.backgroundColor = UIColor.blackColor()
         webView.scrollView.scrollEnabled = false
         return webView
     }()
