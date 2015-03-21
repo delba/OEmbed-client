@@ -12,6 +12,12 @@ private let reuseIdentifier = "cell"
 
 class ItemsViewController: UICollectionViewController {
     
+    // MARK: - Data
+    
+    let items: [Item] = (1...10).map { (i: Int) -> Item in
+        return Item(title: "Item \(i)")
+    }
+    
     // MARK: - Initialization
     
     override init() {
@@ -37,13 +43,22 @@ class ItemsViewController: UICollectionViewController {
     // MARK: - UICollectionViewDataSource
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return items.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as ItemCell
         
+        cell.item = items[indexPath.item]
+        
         return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let item = items[indexPath.item]
+        println(item.title)
     }
     
 }
