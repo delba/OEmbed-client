@@ -38,7 +38,7 @@ class ItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = item.title
+        navigationItem.title = item.title
         
         edgesForExtendedLayout = .None
         

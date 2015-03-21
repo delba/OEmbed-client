@@ -33,7 +33,7 @@ class ItemsViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Items"
+        navigationItem.title = "Items"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
         collectionView!.backgroundColor = UIColor.whiteColor()
