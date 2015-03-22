@@ -31,6 +31,17 @@ class Item {
     let version: String
     let videoID: Int
     
+    var thumbnail: UIImage {
+        if let image = imagesCache[thumbnailURL.absoluteString!] {
+            return image
+        } else {
+            let data = NSData(contentsOfURL: thumbnailURL)!
+            let image = UIImage(data: data)!
+            imagesCache[thumbnailURL.absoluteString!] = image
+            return image
+        }
+    }
+    
     class func all() -> [Item] {
         let path = NSBundle.mainBundle().pathForResource("item", ofType: "json")!
         let data = NSData(contentsOfFile: path)!
@@ -60,18 +71,6 @@ class Item {
         URI = data["uri"] as String
         version = data["version"] as String
         videoID = data["video_id"] as Int
-    }
-    
-    func thumbnail() -> UIImage {
-        if let image = imagesCache[thumbnailURL] {
-            return image
-        } else {
-            let URL = NSURL(string: thumbnailURL)!
-            let data = NSData(contentsOfURL: URL)!
-            let image = UIImage(data: data)!
-            imagesCache[thumbnailURL] = image
-            return image
-        }
     }
     
 }

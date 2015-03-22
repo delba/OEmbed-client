@@ -84,7 +84,7 @@ class ItemCell: UICollectionViewCell {
     // MARK: - Render
     
     func render() {
-        thumbnail.image = item.thumbnail()
+        thumbnail.image = item.thumbnail
         title.text = item.title
     }
     
