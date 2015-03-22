@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+public var imagesCache = [String: UIImage]()
+
 class Item {
     let title: String
     let authorName: String
@@ -61,9 +63,15 @@ class Item {
     }
     
     func thumbnail() -> UIImage {
-        let URL = NSURL(string: thumbnailURL)!
-        let data = NSData(contentsOfURL: URL)!
-        return UIImage(data: data)!
+        if let image = imagesCache[thumbnailURL] {
+            return image
+        } else {
+            let URL = NSURL(string: thumbnailURL)!
+            let data = NSData(contentsOfURL: URL)!
+            let image = UIImage(data: data)!
+            imagesCache[thumbnailURL] = image
+            return image
+        }
     }
     
 }
