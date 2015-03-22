@@ -22,8 +22,8 @@ class Item {
     let HTML: String
     let isPlus: String
     let providerName: String
-    let providerURL: String
-    let thumbnailURL: String
+    let providerURL: NSURL
+    let thumbnailURL: NSURL
     let thumbnailWidth: CGFloat
     let thumbnailHeight: CGFloat
     let type: String
@@ -50,12 +50,12 @@ class Item {
         HTML = data["html"] as String
         height = data["height"] as CGFloat
         width = data["width"] as CGFloat
-        thumbnailURL = data["thumbnail_url"] as String
+        thumbnailURL = NSURL(string: data["thumbnail_url"] as String)!
         thumbnailWidth = data["thumbnail_width"] as CGFloat
         thumbnailHeight = data["thumbnail_height"] as CGFloat
         isPlus = data["is_plus"] as String
         providerName = data["provider_name"] as String
-        providerURL = data["provider_url"] as String
+        providerURL = NSURL(string: data["provider_url"] as String)!
         type = data["type"] as String
         URI = data["uri"] as String
         version = data["version"] as String
