@@ -17,9 +17,9 @@ class ItemsLayout: UICollectionViewFlowLayout {
         
         minimumInteritemSpacing = 0
         minimumLineSpacing = 8
-        itemSize = {
+        estimatedItemSize = {
             let width = UIScreen.mainScreen().bounds.width
-            return CGSize(width: width, height: width * 0.5625)
+            return CGSize(width: width, height: width * 2/3)
         }()
     }
 

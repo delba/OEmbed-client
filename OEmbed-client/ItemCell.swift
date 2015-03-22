@@ -75,4 +75,14 @@ class ItemCell: UICollectionViewCell {
         thumbnail.image = item.thumbnail()
         title.text = item.title
     }
+    
+    override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes! {
+        let attr = layoutAttributes.copy() as UICollectionViewLayoutAttributes
+        
+        var size = attr.frame.size
+        size.height = size.width * item.thumbnailHeight / item.thumbnailWidth
+        attr.frame.size = size
+        
+        return attr
+    }
 }
