@@ -69,12 +69,7 @@ class ItemCell: UICollectionViewCell {
         thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[title]-|", options: nil, metrics: nil, views: views))
     }
     
-    // MARK: - Render
-    
-    func render() {
-        thumbnail.image = item.thumbnail()
-        title.text = item.title
-    }
+    // MARK: - UICollectionReusableView
     
     override func preferredLayoutAttributesFittingAttributes(layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes! {
         let attr = layoutAttributes.copy() as UICollectionViewLayoutAttributes
@@ -85,4 +80,12 @@ class ItemCell: UICollectionViewCell {
         
         return attr
     }
+    
+    // MARK: - Render
+    
+    func render() {
+        thumbnail.image = item.thumbnail()
+        title.text = item.title
+    }
+    
 }
