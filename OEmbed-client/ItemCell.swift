@@ -42,7 +42,7 @@ class ItemCell: UICollectionViewCell {
         
         backgroundColor = UIColor.blackColor()
         
-        addSubview(thumbnail)
+        contentView.addSubview(thumbnail)
         thumbnail.addSubview(title)
         
         updateConstraintsIfNeeded()
@@ -62,8 +62,8 @@ class ItemCell: UICollectionViewCell {
             "title": title
         ]
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[thumbnail]|", options: nil, metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[thumbnail]|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[thumbnail]|", options: nil, metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[thumbnail]|", options: nil, metrics: nil, views: views))
         
         thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[title]", options: nil, metrics: nil, views: views))
         thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[title]-|", options: nil, metrics: nil, views: views))
