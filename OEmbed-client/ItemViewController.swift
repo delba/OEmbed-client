@@ -56,7 +56,7 @@ class ItemViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = item.title
+        navigationItem.title = "Item"
         
         edgesForExtendedLayout = .None
         
