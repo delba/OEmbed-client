@@ -402,6 +402,7 @@
 				6D000D461ABE079600FAE988 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D000D471ABE079600FAE988 /* Build configuration list for PBXNativeTarget "OEmbed-clientTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +411,7 @@
 				6D000D491ABE079600FAE988 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
