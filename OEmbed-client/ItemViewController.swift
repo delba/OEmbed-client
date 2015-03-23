@@ -36,6 +36,12 @@ class ItemViewController: UIViewController {
         return label
     }()
     
+    lazy var itemAuthor: UILabel = {
+        let label = UILabel()
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        return label
+    }()
+    
     // MARK: - UIViewController
     
     override func viewDidLoad() {
@@ -49,6 +55,7 @@ class ItemViewController: UIViewController {
         
         view.addSubview(content)
         view.addSubview(itemTitle)
+        view.addSubview(itemAuthor)
         
         updateViewConstraints()
     }
@@ -60,20 +67,23 @@ class ItemViewController: UIViewController {
         
         let views = [
             "content": content,
-            "title": itemTitle
+            "title": itemTitle,
+            "author": itemAuthor
         ]
         
         view.addConstraint(NSLayoutConstraint(item: content, attribute: .Height, relatedBy: .Equal, toItem: content, attribute: .Width, multiplier: item.thumbnailHeight / item.thumbnailWidth, constant: 0))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[content]|", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[content]-[title]-[author]", options: nil, metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[title]|", options: nil, metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[content]-[title]", options: nil, metrics: nil, views: views))
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[author]|", options: nil, metrics: nil, views: views))
     }
     
     // MARK: - Render
     
     func render() {
-        itemTitle.text = item.title
         content.loadHTMLString(item.HTML, baseURL: nil)
+        itemTitle.text = item.title
+        itemAuthor.text = item.authorName
     }
 
 }

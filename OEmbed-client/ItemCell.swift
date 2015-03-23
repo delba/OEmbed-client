@@ -35,6 +35,13 @@ class ItemCell: UICollectionViewCell {
         return label
     }()
     
+    lazy var author: UILabel = {
+        let label = UILabel()
+        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        return label
+    }()
+    
     // MARK: - Initialization
     
     override init(frame: CGRect) {
@@ -43,6 +50,7 @@ class ItemCell: UICollectionViewCell {
         backgroundColor = UIColor.blackColor()
         
         contentView.addSubview(thumbnail)
+        thumbnail.addSubview(author)
         thumbnail.addSubview(title)
         
         updateConstraintsIfNeeded()
@@ -59,14 +67,16 @@ class ItemCell: UICollectionViewCell {
         
         let views = [
             "thumbnail": thumbnail,
+            "author": author,
             "title": title
         ]
         
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[thumbnail]|", options: nil, metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[thumbnail]|", options: nil, metrics: nil, views: views))
         
+        thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[author]-[title]-|", options: nil, metrics: nil, views: views))
         thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[title]", options: nil, metrics: nil, views: views))
-        thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[title]-|", options: nil, metrics: nil, views: views))
+        thumbnail.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[author]", options: nil, metrics: nil, views: views))
     }
     
     // MARK: - UICollectionReusableView
@@ -85,6 +95,7 @@ class ItemCell: UICollectionViewCell {
     
     func render() {
         thumbnail.image = item.thumbnail
+        author.text = item.authorName
         title.text = item.title
     }
     
