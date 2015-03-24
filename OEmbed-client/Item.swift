@@ -9,68 +9,46 @@
 import Foundation
 import UIKit
 
-public var imagesCache = [String: UIImage]()
+protocol Item {
+    var title: String { get }
+    var authorName: String { get }
+    var thumbnail: UIImage { get }
+    var thumbnailURL: NSURL { get }
+    var thumbnailWidth: CGFloat { get }
+    var thumbnailHeight: CGFloat { get }
+    var HTML: String { get }
+    var width: CGFloat { get }
+    var height: CGFloat { get }
+}
 
-class Item {
-    let title: String
-    let authorName: String
-    let authorURL: String
-    let description: String
-    let duration: Int
-    let height: CGFloat
-    let width: CGFloat
-    let HTML: String
-    let isPlus: String
-    let providerName: String
-    let providerURL: NSURL
-    let thumbnailURL: NSURL
-    let thumbnailWidth: CGFloat
-    let thumbnailHeight: CGFloat
-    let type: String
-    let URI: String
-    let version: String
-    let videoID: Int
+func jsonFor(provider: String) -> [String: AnyObject] {
+    let path = NSBundle.mainBundle().pathForResource(provider, ofType: "json")!
+    let data = NSData(contentsOfFile: path)!
+    return NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as [String: AnyObject]
+}
+
+func allItems() -> [Item] {
+    let json = [
+        jsonFor("vimeo"),
+        jsonFor("soundcloud"),
+        jsonFor("dailymotion"),
+        jsonFor("youtube")
+    ]
     
-    var thumbnail: UIImage {
-        if let image = imagesCache[thumbnailURL.absoluteString!] {
-            return image
-        } else {
-            let data = NSData(contentsOfURL: thumbnailURL)!
-            let image = UIImage(data: data)!
-            imagesCache[thumbnailURL.absoluteString!] = image
-            return image
+    return (1...20).map { (i: Int) -> Item in
+        let n = i % json.count
+        switch n {
+        case 0:
+            return Vimeo(data: json[n])
+        case 1:
+            return SoundCloud(data: json[n])
+        case 2:
+            return Dailymotion(data: json[n])
+        case 3:
+            return YouTube(data: json[n])
+        default:
+            return Vimeo(data: json[0])
         }
-    }
-    
-    class func all() -> [Item] {
-        let path = NSBundle.mainBundle().pathForResource("vimeo", ofType: "json")!
-        let data = NSData(contentsOfFile: path)!
-        let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as [String: AnyObject]
         
-        return (1...10).map { (i: Int) -> Item in
-            return Item(data: json)
-        }
     }
-    
-    init(data: [String: AnyObject]) {
-        title = data["title"] as String
-        authorName = data["author_name"] as String
-        authorURL = data["author_url"] as String
-        description = data["description"] as String
-        duration = data["duration"] as Int
-        HTML = data["html"] as String
-        height = data["height"] as CGFloat
-        width = data["width"] as CGFloat
-        thumbnailURL = NSURL(string: data["thumbnail_url"] as String)!
-        thumbnailWidth = data["thumbnail_width"] as CGFloat
-        thumbnailHeight = data["thumbnail_height"] as CGFloat
-        isPlus = data["is_plus"] as String
-        providerName = data["provider_name"] as String
-        providerURL = NSURL(string: data["provider_url"] as String)!
-        type = data["type"] as String
-        URI = data["uri"] as String
-        version = data["version"] as String
-        videoID = data["video_id"] as Int
-    }
-    
 }

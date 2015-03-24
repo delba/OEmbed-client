@@ -14,7 +14,7 @@ class ItemsViewController: UICollectionViewController {
     
     // MARK: - Data
     
-    let items = Item.all()
+    let items = allItems()
     
     // MARK: - Initialization
     
