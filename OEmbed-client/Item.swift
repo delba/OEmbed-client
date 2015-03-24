@@ -43,7 +43,7 @@ class Item {
     }
     
     class func all() -> [Item] {
-        let path = NSBundle.mainBundle().pathForResource("item", ofType: "json")!
+        let path = NSBundle.mainBundle().pathForResource("vimeo", ofType: "json")!
         let data = NSData(contentsOfFile: path)!
         let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as [String: AnyObject]
         
