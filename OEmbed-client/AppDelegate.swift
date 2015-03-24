@@ -8,6 +8,8 @@
 
 import UIKit
 
+public var imagesCache = [String: UIImage]()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
