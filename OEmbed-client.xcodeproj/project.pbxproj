@@ -143,7 +143,7 @@
 				6D4C980A1AC1E35700B05A91 /* youtube.json */,
 				6D4C980C1AC1E52800B05A91 /* dailymotion.json */,
 			);
-			name = Seeds;
+			path = Seeds;
 			sourceTree = "<group>";
 		};
 		6D4C980F1AC1EE1600B05A91 /* Models */ = {
@@ -155,7 +155,7 @@
 				6D4C98121AC1EE8400B05A91 /* SoundCloud.swift */,
 				6D4C98101AC1EE3900B05A91 /* Vimeo.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
